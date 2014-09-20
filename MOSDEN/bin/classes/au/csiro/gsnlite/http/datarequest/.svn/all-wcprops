@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svnroot/gsn/!svn/ver/2200/trunk/src/gsn/http/datarequest
+END
+StandardCriterion.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/gsn/!svn/ver/1757/trunk/src/gsn/http/datarequest/StandardCriterion.java
+END
+DataRequestException.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/gsn/!svn/ver/911/trunk/src/gsn/http/datarequest/DataRequestException.java
+END
+DownloadData.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/gsn/!svn/ver/2199/trunk/src/gsn/http/datarequest/DownloadData.java
+END
+AbstractCriterion.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/gsn/!svn/ver/911/trunk/src/gsn/http/datarequest/AbstractCriterion.java
+END
+FieldsCollection.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/gsn/!svn/ver/988/trunk/src/gsn/http/datarequest/FieldsCollection.java
+END
+DownloadReport.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/gsn/!svn/ver/2012/trunk/src/gsn/http/datarequest/DownloadReport.java
+END
+QueriesBuilder.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/gsn/!svn/ver/1757/trunk/src/gsn/http/datarequest/QueriesBuilder.java
+END
+AbstractDataRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/gsn/!svn/ver/2200/trunk/src/gsn/http/datarequest/AbstractDataRequest.java
+END
+AggregationCriterion.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/gsn/!svn/ver/1252/trunk/src/gsn/http/datarequest/AggregationCriterion.java
+END
+AbstractQuery.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/gsn/!svn/ver/1757/trunk/src/gsn/http/datarequest/AbstractQuery.java
+END
+OutputInputStream.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/gsn/!svn/ver/988/trunk/src/gsn/http/datarequest/OutputInputStream.java
+END
+LimitCriterion.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/gsn/!svn/ver/1757/trunk/src/gsn/http/datarequest/LimitCriterion.java
+END

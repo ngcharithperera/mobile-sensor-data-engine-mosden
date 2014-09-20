@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter GSN Port Number" />
+
+    <EditText
+        android:id="@+id/editTextPort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="22002"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/startGSNButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start GSN" />
+
+    <Button
+        android:id="@+id/stopGSNButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop GSN" />
+
+
+    <TextView
+        android:id="@+id/gsnlog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="10"
+        android:scrollbars="vertical"        
+        android:text="@string/hello" />
+
+</LinearLayout>

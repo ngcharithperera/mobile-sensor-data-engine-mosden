@@ -1,0 +1,14 @@
+package au.csiro.gsnlite.beans;
+
+public class SlidingConfig {
+
+    private StorageConfig storage;
+
+    public StorageConfig getStorage() {
+        return storage;
+    }
+
+    public void setStorage(StorageConfig storage) {
+        this.storage = storage;
+    }
+}

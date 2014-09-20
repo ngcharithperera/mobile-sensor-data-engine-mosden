@@ -1,0 +1,30 @@
+<virtual-sensor name="AndroidInbuiltMagneticFieldSensor" priority="10">
+	<processing-class>
+		<class-name>au.csiro.gsnlite.vsensor.BridgeVirtualSensor</class-name>
+		<init-params />
+		<output-structure>
+			<field name="geomagneticFieldX_axis" type="double" />
+			<field name="geomagneticFieldY_axis" type="double" />
+			<field name="geomagneticFieldZ_axis" type="double" />
+		</output-structure>
+	</processing-class>
+	<description>This sensor meassures magnetic field using andoid inbuilt sensor of the mobile phone</description>
+	<life-cycle pool-size="10" />
+	<addressing>
+		<predicate key="geographical">Mobile Phone 1 @ CSIRO</predicate>
+		<predicate key="LATITUDE">-35.275597</predicate>
+		<predicate key="LONGITUDE">149.117008</predicate>
+	</addressing>
+	<storage history-size="3m" />
+	<streams>
+		<stream name="input1">
+			<source alias="source1" sampling-rate="1" storage-size="1">
+				<address wrapper="pluginwrapper">
+					<predicate key="plugin">au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_MAGNETIC_FIELD_SENSOR_PLUGIN</predicate>  
+				</address>
+				<query>SELECT * FROM wrapper</query>
+			</source>
+			<query>SELECT * FROM source1</query>
+		</stream>
+	</streams>
+</virtual-sensor>

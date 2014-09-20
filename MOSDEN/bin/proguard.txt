@@ -1,0 +1,12 @@
+# view AndroidManifest.xml #generated:28
+-keep class au.csiro.gsnlite.GSNLiteMainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:15
+-keep class au.csiro.gsnlite.Main { <init>(...); }
+
+# view AndroidManifest.xml #generated:23
+-keep class au.csiro.gsnlite.au.csiro.plugin.Sense { <init>(...); }
+
+# view AndroidManifest.xml #generated:19
+-keep class au.csiro.plugin.DiscoverPlugins { <init>(...); }
+

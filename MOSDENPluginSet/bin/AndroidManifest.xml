@@ -1,0 +1,128 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="au.csiro.sensmalite.pluginlibrary"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="5" />
+
+    <application android:label="@string/app_name" >
+  <service
+            android:name="AndroidInbuiltAccelerometerSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_ACCELEROMETER_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltAmbientTemperatureSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_AMBIENT_TEMPERATURE_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltGravitySensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_GRAVITY_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltGyroscopeSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_GYROSCOPE_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltLightSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_LIGHT_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltLinearAccelerationSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_LINEAR_ACCELERATION_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltMagneticFieldSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_MAGNETIC_FIELD_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltOrientationSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_ORIENTATION_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltPressureSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_PRESSURE_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltProximitySensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_PROXIMITY_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltRelativeHumiditySensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_RELATIVE_HUMIDITY_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltRotationVectorSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_ROTATION_VECTOR_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="AndroidInbuiltTemperatureSensorPlugin"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="au.csiro.sensmalite.mainapp.intent.action.PICK_PLUGIN" />
+
+                <category android:name="au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_TEMPERATURE_SENSOR_PLUGIN" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

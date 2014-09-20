@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svnroot/gsn/!svn/ver/2227/trunk/src/gsn/http/rest
+END
+LocalDeliveryWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/gsn/!svn/ver/2082/trunk/src/gsn/http/rest/LocalDeliveryWrapper.java
+END
+Field4Rest.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/gsn/!svn/ver/1252/trunk/src/gsn/http/rest/Field4Rest.java
+END
+NotificationRegistry.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svnroot/gsn/!svn/ver/1252/trunk/src/gsn/http/rest/NotificationRegistry.java
+END
+RestDelivery.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/gsn/!svn/ver/1842/trunk/src/gsn/http/rest/RestDelivery.java
+END
+PushDelivery.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svnroot/gsn/!svn/ver/1842/trunk/src/gsn/http/rest/PushDelivery.java
+END
+StreamElement4Rest.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/gsn/!svn/ver/1252/trunk/src/gsn/http/rest/StreamElement4Rest.java
+END
+RestStreamHanlder.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/gsn/!svn/ver/2204/trunk/src/gsn/http/rest/RestStreamHanlder.java
+END
+DistributionRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/gsn/!svn/ver/2082/trunk/src/gsn/http/rest/DistributionRequest.java
+END
+DeliverySystem.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svnroot/gsn/!svn/ver/1842/trunk/src/gsn/http/rest/DeliverySystem.java
+END
+RestRemoteWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/gsn/!svn/ver/2227/trunk/src/gsn/http/rest/RestRemoteWrapper.java
+END
+RemoteWrapperParamParser.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svnroot/gsn/!svn/ver/2225/trunk/src/gsn/http/rest/RemoteWrapperParamParser.java
+END
+RemoteWrapperHttpClient.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/gsn/!svn/ver/1252/trunk/src/gsn/http/rest/RemoteWrapperHttpClient.java
+END
+PushRemoteWrapper.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/gsn/!svn/ver/2227/trunk/src/gsn/http/rest/PushRemoteWrapper.java
+END
+Field4RestConverter.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/gsn/!svn/ver/1252/trunk/src/gsn/http/rest/Field4RestConverter.java
+END
+DefaultDistributionRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svnroot/gsn/!svn/ver/2082/trunk/src/gsn/http/rest/DefaultDistributionRequest.java
+END

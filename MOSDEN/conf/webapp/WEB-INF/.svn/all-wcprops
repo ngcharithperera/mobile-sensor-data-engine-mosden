@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svnroot/gsn/!svn/ver/3951/trunk/webapp/WEB-INF
+END
+Service.auto.aar
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svnroot/gsn/!svn/ver/2075/trunk/webapp/WEB-INF/Service.auto.aar
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svnroot/gsn/!svn/ver/3951/trunk/webapp/WEB-INF/web.xml
+END
+Service.manual.aar
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svnroot/gsn/!svn/ver/2075/trunk/webapp/WEB-INF/Service.manual.aar
+END

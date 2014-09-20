@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">GSNLite Application - Main Screen</string>
+    <string name="app_name">GSNLite</string>
+    <string name="button_string">Search Plugins</string>
+
+</resources>
