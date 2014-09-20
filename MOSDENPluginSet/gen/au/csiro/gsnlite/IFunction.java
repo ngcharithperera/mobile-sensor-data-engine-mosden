@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: C:\\PhDCharith\\SourceCode\\MSNMLite\\AndroidMobilePluginSet\\src\\au\\csiro\\gsnlite\\IFunction.aidl
+ * Original file: C:\\ResearchCode\\MOSDEN\\MOSDENPluginSet\\src\\au\\csiro\\gsnlite\\IFunction.aidl
  */
 package au.csiro.gsnlite;
 public interface IFunction extends android.os.IInterface
