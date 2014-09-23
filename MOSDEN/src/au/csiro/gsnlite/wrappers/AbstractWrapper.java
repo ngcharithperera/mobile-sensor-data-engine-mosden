@@ -48,7 +48,7 @@ public abstract class AbstractWrapper extends Thread {
 
 	private Long lastInOrderTimestamp;
 
-	public static final int GARBAGE_COLLECT_AFTER_SPECIFIED_NO_OF_ELEMENTS = 20;
+	public static final int GARBAGE_COLLECT_AFTER_SPECIFIED_NO_OF_ELEMENTS = 2;
 
 	/**
 	 * Returns the view name created for this listener. Note that, GSN creates
@@ -230,7 +230,7 @@ public abstract class AbstractWrapper extends Thread {
 			}
 			return toReturn;
 		} catch (Exception e) {
-			logger.error(TAG, e.getMessage());
+			//logger.error(e.getMessage());
 			logger.error(TAG, "Produced data item from the wrapper couldn't be propagated inside the system.");
 			return false;
 		}

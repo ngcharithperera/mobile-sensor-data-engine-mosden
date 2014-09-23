@@ -38,15 +38,14 @@ import au.csiro.gsnlite.utils.Logger;
 import au.csiro.gsnlite.wrappers.AbstractWrapper;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.XStreamException;
 
 public class PushRemoteWrapper extends AbstractWrapper {
 
     private static final int KEEP_ALIVE_PERIOD = 5000;
 
-   // private final transient Logger logger = Logger.getLogger(PushRemoteWrapper.class);
-    private static transient Logger logger             = Logger.getInstance();
-  	private static String TAG = "PushRemoteWrapper.class";
+    private String TAG = "(PushRemoteWrapper.class)";
+    private final transient Logger logger = Logger.getInstance();
+
     private final XStream XSTREAM = StreamElement4Rest.getXstream();
 
     private double uid = -1; //only set for push based delivery(default)
@@ -57,7 +56,7 @@ public class PushRemoteWrapper extends AbstractWrapper {
 
     private long lastReceivedTimestamp;
 
-    protected DataField[] structure;
+    private DataField[] structure;
 
     List<NameValuePair> postParameters;
 
@@ -90,7 +89,7 @@ public class PushRemoteWrapper extends AbstractWrapper {
             lastReceivedTimestamp = initParams.getStartTime();
             structure = registerAndGetStructure();
         } catch (Exception e) {
-           // logger.error(e.getMessage(), e);
+            logger.error(TAG, e.getMessage(), e);
             NotificationRegistry.getInstance().removeNotification(uid);
             return false;
         }
@@ -131,7 +130,7 @@ public class PushRemoteWrapper extends AbstractWrapper {
                 int sc = response.getStatusLine().getStatusCode();
                 //
                 if (sc == HttpStatus.SC_OK) {
-                	logger.debug(TAG, "Wants to consume the structure packet from "+ initParams.getRemoteContactPoint());
+                    logger.debug(TAG, new StringBuilder().append("Wants to consume the structure packet from ").append(initParams.getRemoteContactPoint()).toString());
                     structure = (DataField[]) XSTREAM.fromXML(response.getEntity().getContent());
                     logger.debug(TAG, "Connection established for: " + initParams.getRemoteContactPoint());
                     break;
@@ -141,19 +140,19 @@ public class PushRemoteWrapper extends AbstractWrapper {
                     else if (sc == HttpStatus.SC_PROXY_AUTHENTICATION_REQUIRED)
                         authState = (AuthState) localContext.getAttribute(ClientContext.PROXY_AUTH_STATE); // Proxy authentication required
                     else {
-                        //logger.error(new StringBuilder()
-                         //       .append("Unexpected POST status code returned: ")
-                        //        .append(sc)
-                         //       .append("\nreason: ")
-                         //       .append(response.getStatusLine().getReasonPhrase()));
+                        logger.error(TAG, new StringBuilder()
+                                .append("Unexpected POST status code returned: ")
+                                .append(sc)
+                                .append("\nreason: ")
+                                .append(response.getStatusLine().getReasonPhrase()).toString());
                     }
                     if (authState != null) {
                         if (initParams.getUsername() == null || (tries > 1 && initParams.getUsername() != null)) {
-                          //  logger.error("A valid username/password required to connect to the remote host: " + initParams.getRemoteContactPoint());
+                            logger.error(TAG, "A valid username/password required to connect to the remote host: " + initParams.getRemoteContactPoint());
                         } else {
                             
                             AuthScope authScope = authState.getAuthScope();
-                           // logger.warn(new StringBuilder().append("Setting Credentials for host: ").append(authScope.getHost()).append(":").append(authScope.getPort()));
+                            logger.warn(TAG, new StringBuilder().append("Setting Credentials for host: ").append(authScope.getHost()).append(":").append(authScope.getPort()).toString());
                             Credentials creds = new UsernamePasswordCredentials(initParams.getUsername(), initParams.getPassword());
                             httpclient.getCredentialsProvider().setCredentials(authScope, creds);
                         }
@@ -164,7 +163,7 @@ public class PushRemoteWrapper extends AbstractWrapper {
                 // In case of an unexpected exception you may want to abort
                 // the HTTP request in order to shut down the underlying
                 // connection and release it back to the connection manager.
-              //  logger.warn("Aborting the HTTP POST request.");
+                logger.warn(TAG, "Aborting the HTTP POST request.");
                 httpPost.abort();
                 throw ex;
             }
@@ -182,13 +181,11 @@ public class PushRemoteWrapper extends AbstractWrapper {
     }
 
     public boolean manualDataInsertion(String Xstream4Rest) {
-       System.out.println("Received Stream Element at the push wrapper.");
-        try {
-        
-            StreamElement4Rest se = (StreamElement4Rest) XSTREAM.fromXML(Xstream4Rest);
-            StreamElement streamElement = se.toStreamElement();
+        logger.debug(TAG, new StringBuilder().append("Received Stream Element at the push wrapper.").toString());
+        StreamElement4Rest se = (StreamElement4Rest) XSTREAM.fromXML(Xstream4Rest);
+        StreamElement streamElement = se.toStreamElement();
 
-        
+        try {
             // If the stream element is out of order, we accept the stream element and wait for the next (update the last received time and return true)
             if (isOutOfOrder(streamElement)) {
                 lastReceivedTimestamp = streamElement.getTimeStamp();
@@ -197,22 +194,21 @@ public class PushRemoteWrapper extends AbstractWrapper {
             // Otherwise, we first try to insert the stream element.
             // If the stream element was inserted succesfully, we wait for the next,
             // otherwise, we return false.
-            boolean status = postStreamElement(streamElement);
+            boolean status = false;
+			try {
+				status = postStreamElement(streamElement);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             if (status)
                 lastReceivedTimestamp = streamElement.getTimeStamp();
             return status;
         }
         catch (SQLException e) {
-          //  logger.warn(e.getMessage(), e);
+            logger.warn(TAG, e.getMessage(), e);
             return false;
         }
-        catch (XStreamException e){
-        	//logger.warn(e.getMessage(), e);
-        	return false;
-        } catch (Exception e) {
-			// TODO Auto-generated catch block
-        	return false;
-		}
     }
 
     public void run() {
@@ -230,17 +226,17 @@ public class PushRemoteWrapper extends AbstractWrapper {
                 response = httpclient.execute(httpPost);
                 int status = response.getStatusLine().getStatusCode();
                 if (status != RestStreamHanlder.SUCCESS_200) {
-                    //logger.error("Cant register to the remote client, retrying in:" + (KEEP_ALIVE_PERIOD / 1000) + " seconds.");
+                    logger.error(TAG, "Cant register to the remote client, retrying in:" + (KEEP_ALIVE_PERIOD / 1000) + " seconds.");
                     structure = registerAndGetStructure();
                 }
             } catch (Exception e) {
-               // logger.warn(e.getMessage(), e);
+                logger.warn(TAG, e.getMessage(), e);
             } finally {
                 if (response != null) {
                     try {
                         response.getEntity().getContent().close();
                     } catch (Exception e) {
-                    //    logger.warn(e.getMessage(), e);
+                        logger.warn(TAG, e.getMessage(), e);
                     }
                 }
             }

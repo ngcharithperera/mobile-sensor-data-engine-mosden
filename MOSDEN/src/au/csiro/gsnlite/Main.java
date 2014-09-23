@@ -332,11 +332,8 @@ public class Main {
 			logger.error (TAG, "The file wrapper.properties refers to one or more classes which don't exist in the classpath");
 			logger.error (TAG, e.getMessage ( ),e );
 			System.exit ( 1 );
-		} catch (JiBXException e){
-			logger.error (TAG, "The configuration properties file cannot be loaded. Please ensure BIND operation was performed");
-			logger.error(TAG, e.getMessage());
+		} catch (Exception e){
 			e.printStackTrace();
-			System.exit ( 1 );
 		}
 		finally {
 			return toReturn;
@@ -399,7 +396,6 @@ public class Main {
 			}
 
 			return Class.forName(className);
-			
 		} catch (ClassNotFoundException e) {
 			logger.error (TAG,e.getMessage(),e);
 		}

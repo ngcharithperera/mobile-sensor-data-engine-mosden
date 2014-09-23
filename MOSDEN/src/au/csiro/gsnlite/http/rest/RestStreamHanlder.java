@@ -99,6 +99,7 @@ public class RestStreamHanlder extends HttpServlet {
 
             } catch (Exception e) {
                 logger.debug(TAG, e.getMessage(), e);
+                logger.debug("Charith:", e.getMessage());
             }
             continuation.suspend();
             try {

@@ -53,12 +53,15 @@ public class PluginWrapper extends AbstractWrapper {
 	private String category;
 	private DataField4Plugins[] collection4Plugins;
 	private StreamElement4Plugins[] streamElement4Plugins;
+	private Serializable[] dataRow;
 	private ServiceConnection opServiceConnection;
 	private boolean isBinded;
 
 	public boolean initialize() {
+		logger.debug("charith", "problem22");
 		setName("MultiFormatWrapper" + counter++);
 		params = getActiveAddressBean();
+		logger.debug("charith", "problem23");
 		if (params.getPredicateValue("rate") != null) {
 			rate = (long) Integer.parseInt(params.getPredicateValue("rate"));
 
@@ -67,18 +70,31 @@ public class PluginWrapper extends AbstractWrapper {
 							+ " msec.");
 		}
 		category = params.getPredicateValue("plugin");
+		logger.debug("charith", "problem24");
 		isBinded = bindOpService();
 		
+//		try {
+//			Thread.sleep(5000);
+//		} catch (InterruptedException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//		
+		logger.debug("charith", Boolean.toString(isBinded));
 		while (!isBinded) {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 
 		try {
+			logger.debug("charith", "problem25");
 			collection4Plugins = opService.getDataStructure();
+			logger.debug("charith", "read structure");
+			logger.debug("charith", "problem26");
 			collection = new DataField[collection4Plugins.length];
 
 			for (int i = 0; i < collection4Plugins.length; i++) {
@@ -104,6 +120,7 @@ public class PluginWrapper extends AbstractWrapper {
 
 			try {
 				streamElement4Plugins = opService.getReadings();
+				logger.debug("charith", "read values");
 				Serializable[] dataRow = new Serializable[streamElement4Plugins.length];
 				for (int i = 0; i < dataRow.length; i++) {
 					dataRow[i] = streamElement4Plugins[i].getValue();
@@ -129,7 +146,9 @@ public class PluginWrapper extends AbstractWrapper {
 	}
 
 	private boolean bindOpService() {
+		logger.debug("charith", "problem27");
 		if (category != null) {
+			logger.debug("charith", "problem28");
 
 			Intent i = new Intent(ACTION);
 			i.addCategory(category);
@@ -137,24 +156,34 @@ public class PluginWrapper extends AbstractWrapper {
 
 				@Override
 				public void onServiceDisconnected(ComponentName name) {
+					logger.debug("charith", "problem31");
 					opService = null;
 				}
 
 				@Override
 				public void onServiceConnected(ComponentName name,
 						IBinder service) {
+					logger.debug("charith", "problem29");
 					opService = IFunction.Stub.asInterface(service);
+					logger.debug("charith", "H: "+Boolean.toString(opServiceConnection==null));
+					logger.debug("charith", "problem30");
+					// opService.registerCallback(mCallback);
 					isBinded = true;
 				}
 			};
+			logger.debug("charith", "problem32");
 
 			ApplicationObject.getGsnLiteMainActivity().bindService(
 					i, opServiceConnection, Context.BIND_AUTO_CREATE);
-			//remove if all work fine
+			// logger.debug("charith",Boolean.toString(b));
+			logger.debug("charith", "problem40");
+			 logger.debug("charith",Boolean.toString(isBinded));
 			while (!isBinded) {
+				logger.debug("charith", "problem41");
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -25,9 +25,7 @@ public class BridgeVirtualSensor extends AbstractVirtualSensor {
     }
 
     public void dataAvailable(String inputStreamName, StreamElement data) {
-    	System.out.println("MobileServer,"+this.getVirtualSensorConfiguration().getName()+","+ System.currentTimeMillis());
-
-    	if (allow_nulls)
+        if (allow_nulls)
             dataProduced(data);
         else {
             if (!areAllFieldsNull(data))

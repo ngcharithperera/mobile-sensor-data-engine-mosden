@@ -84,6 +84,7 @@ public class VirtualSensor {
      * @return the config
      */
     public VSensorConfig getConfig() {
+    	logger.debug("charith","problem8");
         return config;
     }
 
