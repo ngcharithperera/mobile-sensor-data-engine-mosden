@@ -12,6 +12,8 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 
 import au.csiro.gsnlite.beans.DataField;
@@ -85,6 +87,11 @@ public class PushDelivery implements DeliverySystem {
 			ArrayList<NameValuePair> postParameters = new ArrayList <NameValuePair>();
 			postParameters.add(new BasicNameValuePair(PushDelivery.NOTIFICATION_ID_KEY, Double.toString(notificationId)));
 			postParameters.add(new BasicNameValuePair(PushDelivery.DATA, xml));
+			
+			HttpParams params = httpclient.getParams();
+			HttpConnectionParams.setConnectionTimeout(params, 3000);
+			HttpConnectionParams.setSoTimeout(params, 5000);
+			
 			
 			httpPut.setEntity(new UrlEncodedFormEntity(postParameters, HTTP.UTF_8));
 			

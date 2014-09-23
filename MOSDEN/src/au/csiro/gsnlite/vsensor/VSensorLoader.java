@@ -108,14 +108,13 @@ public class VSensorLoader extends Thread {
 			logger.error (TAG, "The Storage Manager shouldn't be null, possible a BUG." );
 			return;
 		}
-		//while ( isActive ) {
+		while ( isActive ) {
 			try {
 				loadPlugin ( );
 			} catch ( Exception e ) {
-				//charith
-				//logger.error (TAG, e.getMessage ( ) , e );
+				logger.error (TAG, e.getMessage ( ) , e );
 			}
-		//}
+		}
 	}
 
     public synchronized void loadVirtualSensor(String vsConfigurationFileContent, String fileName) throws Exception {
@@ -192,7 +191,6 @@ public class VSensorLoader extends Thread {
           VirtualSensor pool = new VirtualSensor(vs);
           try {
               if (createInputStreams(pool) == false) {
-            	  logger.debug("charith","problem6");
                   logger.error (TAG,"loading the >" + vs.getName() + "< virtual sensor is stoped due to error (TAG,s) in preparing the input streams.");
                   return false;
               }
@@ -383,18 +381,11 @@ public class VSensorLoader extends Thread {
 	 */
 	public boolean createInputStreams ( VirtualSensor pool ) throws InstantiationException, IllegalAccessException {
 		if ( logger.isDebugEnabled ( ) ) logger.debug (TAG, new StringBuilder ( ).append ( "Preparing input streams for: " ).append ( pool.getConfig().getName ( ) ).toString ( ) );
-		//charith
-		logger.debug("charith","problem");
 		if ( pool.getConfig().getInputStreams ( ).size ( ) == 0 ) logger.warn(TAG, new StringBuilder ( "There is no input streams defined for *" ).append ( pool.getConfig().getName ( ) ).append ( "*" ).toString ( ) );
-		logger.debug("charith","problem2");
 		for ( Iterator < InputStream > inputStreamIterator = pool.getConfig().getInputStreams ( ).iterator ( ) ; inputStreamIterator.hasNext ( ) ; ) {
-			logger.debug("charith","problem3");
 			InputStream inputStream = inputStreamIterator.next ( );
-			logger.debug("charith","problem4");
 			for ( StreamSource  dataSouce : inputStream.getSources ( )) {
-				logger.debug("charith","problem5");
 				if ( prepareStreamSource ( pool.getConfig(),inputStream , dataSouce ) == false ){
-					logger.debug("charith","problem7");
 					return false;
 					}
 				// TODO if one stream source fails all the resources used by other successfuly initialized stream sources
@@ -402,7 +393,6 @@ public class VSensorLoader extends Thread {
 			}
 			inputStream.setPool (pool );
 		}
-		logger.debug("charith","problem3");
 		return true;
 	}
 	/**
@@ -414,18 +404,13 @@ public class VSensorLoader extends Thread {
 	 * FIXME: COPIED_FOR_SAFE_STOAGE
 	 */
 	public AbstractWrapper findWrapper(AddressBean addressBean) throws InstantiationException, IllegalAccessException {
-		logger.debug("charith","problem16");
 			if ( Main.getWrapperClass ( addressBean.getWrapper ( ) ) == null ) {
 				logger.error (TAG, "The wrapper >" + addressBean.getWrapper ( ) + "< is not defined in the >" + WrappersUtil.DEFAULT_WRAPPER_PROPERTIES_FILE + "< file." );
 				return null;
 			}
-			logger.debug("charith","problem17");
 			AbstractWrapper wrapper = ( AbstractWrapper ) Main.getWrapperClass ( addressBean.getWrapper ( ) ).newInstance ( );
-			logger.debug("charith","problem20");
 			wrapper.setActiveAddressBean ( addressBean );
-			logger.debug("charith","problem21");
 			boolean initializationResult = wrapper.initialize (  );
-			logger.debug("charith","problem19");
 			if ( initializationResult == false )
 				return null;
 			try {
@@ -436,25 +421,18 @@ public class VSensorLoader extends Thread {
 				logger.error ( TAG,e.getMessage ( ) , e );
 				return null;
 			}
-			logger.debug("charith","problem18");
 //			wrapper.start ( ); //moved to the VSensorPool
 			activeWrappers.add ( wrapper );
 
 			return wrapper;
 	}
 	public boolean prepareStreamSource ( VSensorConfig vsensorConfig,InputStream inputStream , StreamSource streamSource  ) throws InstantiationException, IllegalAccessException {
-		logger.debug("charith","problem9");
 		streamSource.setInputStream(inputStream);
 		AbstractWrapper wrapper = null;
-		logger.debug("charith","problem11");
 		for ( AddressBean addressBean : streamSource.getAddressing ( ) ) {
-			logger.debug("charith","problem12");
 			addressBean.setInputStreamName(inputStream.getInputStreamName());
-			logger.debug("charith","problem13");
 			addressBean.setVirtualSensorName(vsensorConfig.getName());
-			logger.debug("charith","problem14");
 			wrapper = findWrapper(addressBean);
-			logger.debug("charith","problem15");
 			try {
 				if (wrapper!=null && prepareStreamSource( streamSource,wrapper.getOutputFormat(),wrapper)) 
 					break;
@@ -466,7 +444,6 @@ public class VSensorLoader extends Thread {
 				logger.error (TAG,"Preparation of the stream source failed : "+streamSource.getAlias()+ " from the input stream : "+inputStream.getInputStreamName());
 			}
 		}
-		logger.debug("charith","problem10");
 		return (wrapper!=null);
 	}
 

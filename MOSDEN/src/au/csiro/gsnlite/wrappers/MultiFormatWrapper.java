@@ -144,7 +144,6 @@
 //				// result.put("light", opService.getSensorData());
 //				result = (HashMap) opService.getSensorData();
 //				// resultField.setText(result.get("first").toString());
-//				Log.d("charith", result.get("first").toString());
 //			} catch (DeadObjectException ex) {
 //				Log.e(LOG_TAG, "DeadObjectException", ex);
 //				message = "Service error";
@@ -156,7 +155,6 @@
 //		}
 //		if (message != null)
 //			// resultField.setText( message );
-//			Log.d("charith", result.get("first").toString());
 //
 //		else {
 //			// resultField.setText( Float.toString((Float) result.get("light"))
