@@ -4,5 +4,7 @@
     <string name="hello">GSNLite Application - Main Screen</string>
     <string name="app_name">GSNLite</string>
     <string name="button_string">Search Plugins</string>
-
+    <string name="log_filename">%1$s%2$s%3$d%4$s</string>
+    <string name="turn_on_GPS">Click to turn on GPS, or swipe to ignore</string>
+    <string name="log_message">Log: timestamp: %1$s type %2$s confidence %3$d</string>
 </resources>

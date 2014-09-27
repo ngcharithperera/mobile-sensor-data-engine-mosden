@@ -5,13 +5,19 @@
     android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="15" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
 
     <application
         android:icon="@drawable/ic_launcher"
-        android:label="GSNLite" 
-        android:largeHeap="true">
+        android:label="GSNLite"
+        android:largeHeap="true" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name="au.csiro.gsnlite.Main"
             android:label="GSn-Lite" >
@@ -24,16 +30,15 @@
             android:name=".au.csiro.plugin.Sense"
             android:label="Sense" >
         </activity>
-
-         <activity
+        <activity
             android:name=".GSNLiteMainActivity"
             android:label="New GSN Lite" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>            
-         </activity>
-         
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
