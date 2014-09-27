@@ -27,7 +27,7 @@ public class GSNLiteMainActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gsnmain);
-		
+		MyApplication.setContext(this);
 		handler = new Handler() {
 			  public void handleMessage(Message msg) {
 				  TextView myTextView = 

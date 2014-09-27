@@ -20,6 +20,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.ActivityRecognitionClient;
+import com.google.android.gms.location.DetectedActivity;
 
 public class ActivitySensorPlugin extends Service implements
 		GooglePlayServicesClient.ConnectionCallbacks,
@@ -35,7 +36,22 @@ public class ActivitySensorPlugin extends Service implements
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		Log.d("charith", "onStartCommand");
+		Log.d("charith", "onStartCommand");		
+		return super.onStartCommand(intent, flags, startId);
+
+	}
+
+	public void onDestroy() {
+		super.onDestroy();
+		if (arclient != null) {
+			arclient.removeActivityUpdates(pIntent);
+			arclient.disconnect();
+		}
+		unregisterReceiver(receiver);
+	}
+
+	public IBinder onBind(Intent intent) {
+		Log.d("charith", "onBind");
 		int resp = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 		if (resp == ConnectionResult.SUCCESS) {
 			arclient = new ActivityRecognitionClient(this, this, this);
@@ -58,21 +74,6 @@ public class ActivitySensorPlugin extends Service implements
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("au.csiro.sensmalite.pluginlibrary.ACTIVITY_RECOGNITION_DATA");
 		registerReceiver(receiver, filter);
-		return super.onStartCommand(intent, flags, startId);
-
-	}
-
-	public void onDestroy() {
-		super.onDestroy();
-		if (arclient != null) {
-			arclient.removeActivityUpdates(pIntent);
-			arclient.disconnect();
-		}
-		unregisterReceiver(receiver);
-	}
-
-	public IBinder onBind(Intent intent) {
-		Log.d("charith", "onBind");
 		return mulBinder;
 	}
 
@@ -116,5 +117,22 @@ public class ActivitySensorPlugin extends Service implements
 		Log.d("charith", "onDisconnected");
 		// TODO Auto-generated method stub
 
+	}
+	
+	private String getType(int type){
+		if(type == DetectedActivity.UNKNOWN)
+			return "Unknown";
+		else if(type == DetectedActivity.IN_VEHICLE)
+			return "In Vehicle";
+		else if(type == DetectedActivity.ON_BICYCLE)
+			return "On Bicycle";
+		else if(type == DetectedActivity.ON_FOOT)
+			return "On Foot";
+		else if(type == DetectedActivity.STILL)
+			return "Still";
+		else if(type == DetectedActivity.TILTING)
+			return "Tilting";
+		else
+			return "";
 	}
 }

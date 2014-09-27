@@ -13,20 +13,20 @@
 	</description>
 	<life-cycle pool-size="10" />
 	<addressing>
-		<predicate key="geographical">Sensor 2 @ CSIRO</predicate>
-		<predicate key="LATITUDE">-35.275597</predicate>
-		<predicate key="LONGITUDE">149.117008</predicate>
+		<predicate key="geographical">Sensor 114 @ EPFL</predicate>
+		<predicate key="LATITUDE">46.520000</predicate>
+		<predicate key="LONGITUDE">6.565000</predicate>
 	</addressing>
-	<storage history-size="3m" />
+	<storage history-size="5m" />
 	<streams>
 		<stream name="input1">
 			<source alias="source1" sampling-rate="1" storage-size="1">
-				<address wrapper="pluginwrapper">
-					<predicate key="plugin">au.csiro.sensmalite.mainapp.intent.category.ANDROID_INBUILT_TEMPERATURE_SENSOR_PLUGIN</predicate>  
+				<address wrapper="activitywrapper">
+					<!--		<predicate key="rate">2000</predicate>   -->
 				</address>
-				<query>SELECT * FROM wrapper</query>
+				<query>SELECT light, temperature, packet_type, timed FROM wrapper</query>
 			</source>
-			<query>SELECT * FROM source1</query>
+			<query>SELECT light, temperature, packet_type, timed FROM source1</query>
 		</stream>
 	</streams>
 </virtual-sensor>
