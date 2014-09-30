@@ -1,15 +1,12 @@
-<virtual-sensor name="geoSampleHandler" priority="10">
+<virtual-sensor name="geoSampleHandler22" priority="10">
 	<processing-class>
 		<class-name>au.csiro.gsnlite.vsensor.BridgeVirtualSensor</class-name>
 		<init-params />
 		<output-structure>
-			<field name="light" type="double" />
-			<field name="temperature" type="double" />
-			<field name="packet_type" type="double" />
+			<field name="within_area" type="int" />
 		</output-structure>
 	</processing-class>
-	<description>This sensor simulates light and temperature readings
-		every one second.
+	<description>This sensor determikne whther the device is within the geofence marked area
 	</description>
 	<life-cycle pool-size="10" />
 	<addressing>
@@ -22,11 +19,13 @@
 		<stream name="input1">
 			<source alias="source1" sampling-rate="1" storage-size="1">
 				<address wrapper="geofencewrapper">
-					<!--		<predicate key="rate">2000</predicate>   -->
+					<predicate key="latitude">-35.280197</predicate>
+					<predicate key="longitude">149.112330</predicate>
+					<predicate key="radius">2000</predicate>
 				</address>
-				<query>SELECT light, temperature, packet_type, timed FROM wrapper</query>
+				<query>SELECT within_area, timed FROM wrapper</query>
 			</source>
-			<query>SELECT light, temperature, packet_type, timed FROM source1</query>
+			<query>SELECT within_area,  timed FROM source1</query>
 		</stream>
 	</streams>
 </virtual-sensor>

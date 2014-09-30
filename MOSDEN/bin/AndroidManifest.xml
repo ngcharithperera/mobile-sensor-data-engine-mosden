@@ -43,7 +43,7 @@
 
         <service android:name="au.csiro.gsnlite.wrappers.ActivityRecognitionService" >
         </service>
-        <service android:name="au.csiro.gsnlite.wrappers.GeofenceIntentSerivce" >
+        <service android:name="au.csiro.gsnlite.wrappers.GeofenceRecognitionSerivce" >
         </service>
     </application>
 

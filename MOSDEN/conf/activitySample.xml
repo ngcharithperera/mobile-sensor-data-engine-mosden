@@ -1,0 +1,38 @@
+<virtual-sensor name="activitySampleHandler" priority="10">
+	<processing-class>
+		<class-name>au.csiro.gsnlite.vsensor.BridgeVirtualSensor</class-name>
+		<init-params />
+		<output-structure>
+			<field name="activity" type="int" />
+			<field name="confidence" type="int" />
+		</output-structure>
+	</processing-class>
+	<description> This sensor recognize the activity. 
+	    (0) IN_VEHICLE	The device is in a vehicle, such as a car. 
+	    (1) ON_BICYCLE	The device is on a bicycle. 
+	    (2) ON_FOOT	The device is on a user who is walking or running. 
+	    (3) RUNNING	The device is on a user who is running. 
+	    (4) STILL	The device is still (not moving). 
+	    (5) TILTING	The device angle relative to gravity changed significantly.	
+	    (6) UNKNOWN	Unable to detect he current activity. 
+	    (7) WALKING	The device is on a user who is walking.
+	</description>
+	<life-cycle pool-size="10" />
+	<addressing>
+		<predicate key="geographical">Sensor 114 @ EPFL</predicate>
+		<predicate key="LATITUDE">46.520000</predicate>
+		<predicate key="LONGITUDE">6.565000</predicate>
+	</addressing>
+	<storage history-size="5m" />
+	<streams>
+		<stream name="input1">
+			<source alias="source1" sampling-rate="1" storage-size="1">
+				<address wrapper="activitywrapper">
+					<!--		<predicate key="rate">2000</predicate>   -->
+				</address>
+				<query>SELECT activity, confidence, timed FROM wrapper</query>
+			</source>
+			<query>SELECT activity, confidence,  timed FROM source1</query>
+		</stream>
+	</streams>
+</virtual-sensor>

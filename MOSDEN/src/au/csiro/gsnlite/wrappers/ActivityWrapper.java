@@ -34,13 +34,12 @@ public class ActivityWrapper extends AbstractWrapper implements
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener {
 	private DataField[] collection = new DataField[] {
-			new DataField("packet_type", "int", "packet type"),
-			new DataField("temperature", "double",
-					"Presents the temperature sensor."),
-			new DataField("light", "double", "Presents the light sensor.") };
+			new DataField("activity", "int", "Current user activity"),
+			new DataField("confidence", "int", "Confidence of the reasoning")};
 
 	private static transient Logger logger = Logger.getInstance();
-	private static String TAG = "MultiFormatWrapper.class";
+	private static String TAG = "ActivityWrapper.class";
+	private static String ACTION = "au.csiro.gsnlite.wrappers.ACTIVITY_RECOGNITION_DATA";
 
 	private int counter;
 	private AddressBean params;
@@ -50,10 +49,10 @@ public class ActivityWrapper extends AbstractWrapper implements
 	private PendingIntent pIntent;
 	private BroadcastReceiver receiver;
 
-	public int activityType;
-
+	public static int activity_type = 99;
+	public static int confidence = 99;
 	public boolean initialize() {
-		setName("MultiFormatWrapper" + counter++);
+		setName("ActivityWrapper" + counter++);
 
 		params = getActiveAddressBean();
 
@@ -84,25 +83,21 @@ public class ActivityWrapper extends AbstractWrapper implements
 		receiver = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				String v = "";
-				v = "Activity :" + intent.getStringExtra("Activity") + " "
-						+ "Confidence : "
-						+ intent.getExtras().getInt("Confidence") + "\n";
-				activityType = intent.getExtras().getInt("ActivityType");
-				Log.d("charith", v);
+				activity_type = intent.getExtras().getInt("ActivityType");
+				confidence =  intent.getExtras().getInt("Confidence");
+				
 			}
 		};
 
 		IntentFilter filter = new IntentFilter();
-		filter.addAction("au.csiro.gsnlite.wrappers.ACTIVITY_RECOGNITION_DATA");
+		filter.addAction(ACTION);
 		MyApplication.getAppContext().registerReceiver(receiver, filter);
 
 		return true;
 	}
 
 	public void run() {
-		Double light = 0.0, temperature = 0.0;
-		int packetType = 0;
+		Log.d("ActivityWrapper", Integer.toString(activity_type));
 
 		while (isActive()) {
 			try {
@@ -112,21 +107,14 @@ public class ActivityWrapper extends AbstractWrapper implements
 				logger.error(TAG, e.getMessage());
 			}
 
-			// create some random readings
-			light = ((int) (Math.random() * 10000)) / 10.0;
-			//temperature = ((int) (Math.random() * 1000)) / 10.0;
-			
-			packetType = activityType;
 
 			// post the data to GSN
 			try {
-				postStreamElement(new Serializable[] { packetType, temperature,
-						light });
+				postStreamElement(new Serializable[] { activity_type, confidence });
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			logger.debug(TAG, "Multiformat Wrapper Sending data\n");
+			logger.debug(TAG, "Activity Wrapper Sending data\n");
 		}
 	}
 
@@ -135,7 +123,7 @@ public class ActivityWrapper extends AbstractWrapper implements
 	}
 
 	public String getWrapperName() {
-		return "MultiFormat Sample Wrapper";
+		return "Activity Wrapper";
 	}
 
 	public void dispose() {
@@ -144,18 +132,13 @@ public class ActivityWrapper extends AbstractWrapper implements
 
 	@Override
 	public void onConnectionFailed(ConnectionResult arg0) {
-		// Toast.makeText(this, "Connection Failed", Toast.LENGTH_SHORT).show();
-
 	}
 
 	@Override
 	public void onConnected(Bundle arg0) {
-
 	}
 
 	@Override
 	public void onDisconnected() {
-		// TODO Auto-generated method stub
-
 	}
 }
